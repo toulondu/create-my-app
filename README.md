@@ -1,2 +1,1 @@
-# create-my-app
-A scaffold to quickly create react app.(Same function with create-react-app)
+脚手架是统一公司技术栈，加快项目开发流程的一个重要工具。所以，虽然有了 create-react-app 等工具，但自己实现一个脚手架依然非常有必要。

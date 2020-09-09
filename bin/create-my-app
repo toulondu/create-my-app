@@ -1,0 +1,32 @@
+#! /usr/bin/env node
+
+const program = require("commander");
+const Project = require("../src/main.js");
+
+program
+  .storeOptionsAsProperties(false) //将参数存储在options变量中，防止冲突
+  .version("1.0.0")
+  .usage("<project-name> [options]");
+
+program
+  .option("-n, --use-npm", "是否使用npm进行安装，默认为yarn")
+  .option("--template <path-to-template>", "指定模版用于创建项目。 dva | cra")
+  .option("-d, --desc <description string>", "项目介绍")
+  .parse(process.argv);
+
+const programOptions = program.opts();
+
+const { name, desc, useNpm, template } = programOptions;
+
+const args = program.args;
+
+const projectName = args[0] || name;
+
+const project = new Project({
+  projectName,
+  description: desc,
+  useNpm,
+  template: template,
+});
+
+project.create();
